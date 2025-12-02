@@ -1,0 +1,28 @@
+{
+    "name": "starshop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server.js",
+        "db:sync": "node src/utils/sync.js",
+        "db:seed": "npx sequelize-cli --config src/config/config.js db:seed:all",
+        "db:migrate": "npx sequelize-cli --config src/config/config.js db:migrate"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.3",
+        "express": "^5.1.0",
+        "express-validator": "^7.3.1",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.15.3",
+        "sequelize": "^6.37.7",
+        "sequelize-cli": "^6.6.3",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
+    }
+}
