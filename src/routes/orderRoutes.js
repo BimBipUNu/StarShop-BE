@@ -47,7 +47,6 @@
 
 // module.exports = router;
 
-
 const express = require('express');
 const { check } = require('express-validator');
 const orderController = require('../controllers/orderController');
@@ -111,7 +110,8 @@ const router = express.Router();
 // Create a new order (User only)
 router.post(
   '/',
-  [verifyToken,
+  [
+    verifyToken,
     check('cartItems', 'cartItems are required and must be an array').isArray(),
     check('cartItems.*.productId', 'productId is required and must be an integer').isInt({ gt: 0 }),
     check('cartItems.*.quantity', 'quantity is required and must be an integer greater than 0').isInt({ gt: 0 }),
