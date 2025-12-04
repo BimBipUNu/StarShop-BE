@@ -9,7 +9,7 @@ const options = {
             description: 'API documentation for the StarShop e-commerce application',
         },
         servers: [{
-            url: 'http://localhost:3000/api',
+            url: '/api',
             description: 'Development server',
         }, ],
         components: {
