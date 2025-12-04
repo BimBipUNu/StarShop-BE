@@ -119,8 +119,10 @@ router.put(
         check('name', 'Name is required').optional().not().isEmpty(),
         check('email', 'Please include a valid email').optional().isEmail(),
         check('password', 'Please enter a password with 6 or more characters').optional().isLength({ min: 6 }),
-        check('phone', 'Phone must be a valid number').optional().isString(),
+        check('phone', 'Phone must be a valid string').optional().isString(),
         check('address', 'Address is required').optional().not().isEmpty(),
+        check('age', 'Age must be an integer').optional().isInt({ gt: 0 }),
+        check('avatar', 'Avatar must be a string').optional().isString(),
     ],
     userController.updateUser
 );

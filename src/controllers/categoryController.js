@@ -1,70 +1,55 @@
-const db = require('../models');
-const Category = db.Category;
+const categoryService = require('../services/categoryService');
 
-// Lấy tất cả danh mục
-exports.getAllCategories = async (req, res) => {
+exports.getAllCategories = async (req, res, next) => {
   try {
-    const categories = await Category.findAll();
+    const categories = await categoryService.getAllCategories();
     res.status(200).json(categories);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// Lấy 1 danh mục theo ID
-exports.getCategoryById = async (req, res) => {
+exports.getCategoryById = async (req, res, next) => {
   try {
-    const category = await Category.findByPk(req.params.id);
+    const category = await categoryService.getCategoryById(req.params.id);
     if (!category) {
-      return res.status(404).json({ message: "Category not found" });
+      return res.status(404).json({ message: 'Category not found' });
     }
     res.status(200).json(category);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// Tạo danh mục mới (Admin only)
-exports.createCategory = async (req, res) => {
+exports.createCategory = async (req, res, next) => {
   try {
-    const { name, icon } = req.body;
-    const category = await Category.create({ name, icon });
+    const category = await categoryService.createCategory(req.body);
     res.status(201).json(category);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// Cập nhật danh mục (Admin only)
-exports.updateCategory = async (req, res) => {
+exports.updateCategory = async (req, res, next) => {
   try {
-    const { name, icon } = req.body;
-    const category = await Category.findByPk(req.params.id);
-
-    if (!category) {
-      return res.status(404).json({ message: "Category not found" });
+    const updatedCategory = await categoryService.updateCategory(req.params.id, req.body);
+    if (!updatedCategory) {
+      return res.status(404).json({ message: 'Category not found' });
     }
-
-    category.name = name || category.name;
-    category.icon = icon || category.icon;
-    await category.save();
-
-    res.status(200).json(category);
+    res.status(200).json(updatedCategory);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// Xóa danh mục (Admin only)
-exports.deleteCategory = async (req, res) => {
+exports.deleteCategory = async (req, res, next) => {
   try {
-    const category = await Category.findByPk(req.params.id);
-    if (!category) {
-      return res.status(404).json({ message: "Category not found" });
+    const deleted = await categoryService.deleteCategory(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: 'Category not found' });
     }
-    await category.destroy();
-    res.status(200).json({ message: "Category deleted successfully" });
+    res.status(204).send();
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };

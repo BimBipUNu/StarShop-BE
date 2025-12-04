@@ -90,9 +90,10 @@ router.get('/:id', productController.getProductById);
 router.post(
     '/', [verifyToken, authorizeRoles(['admin', 'staff']),
         check('name', 'Name is required').not().isEmpty(),
-        check('category', 'Category is required').not().isEmpty(),
+        check('categoryId', 'Category ID is required').isInt({ gt: 0 }),
         check('price', 'Price must be a number').isFloat({ gt: 0 }),
         check('stock', 'Stock must be an integer').isInt({ gt: -1 }),
+        check('featured', 'Featured must be a boolean').optional().isBoolean(),
     ],
     productController.createProduct
 );
@@ -109,7 +110,7 @@ router.post(
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: integer
  *         required: true
  *         description: ID of the product to update
  *     requestBody:
@@ -138,9 +139,10 @@ router.post(
 router.put(
     '/:id', [verifyToken, authorizeRoles(['admin', 'staff']),
         check('name', 'Name is required').optional().not().isEmpty(),
-        check('category', 'Category is required').optional().not().isEmpty(),
+        check('categoryId', 'Category ID is required').optional().isInt({ gt: 0 }),
         check('price', 'Price must be a number').optional().isFloat({ gt: 0 }),
         check('stock', 'Stock must be an integer').optional().isInt({ gt: -1 }),
+        check('featured', 'Featured must be a boolean').optional().isBoolean(),
     ],
     productController.updateProduct
 );
@@ -157,7 +159,7 @@ router.put(
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: integer
  *         required: true
  *         description: ID of the product to delete
  *     responses:
