@@ -20,7 +20,7 @@ const router = express.Router();
  *     summary: Get all users (Admin only)
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     responses:
  *       200:
  *         description: A list of users
@@ -48,7 +48,7 @@ router.get(
  *     summary: Get user by ID
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -82,7 +82,7 @@ router.get(
  *     summary: Update user by ID
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -132,7 +132,7 @@ router.put(
  *     summary: Delete user by ID (Admin only)
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id

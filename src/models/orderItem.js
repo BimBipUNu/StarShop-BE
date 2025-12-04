@@ -1,34 +1,44 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const OrderItem = sequelize.define('OrderItem', {
-    orderId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      references: {
-        model: 'Orders',
-        key: 'id',
-      },
-    },
-    productId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      references: {
-        model: 'Products',
-        key: 'id',
-      },
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-  }, {
-    timestamps: true,
-  });
+    const OrderItem = sequelize.define('OrderItem', {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        orderId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Orders',
+                key: 'id',
+            },
+        },
+        productId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Products',
+                key: 'id',
+            },
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        price: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+        },
+    }, {
+        timestamps: true,
+    });
 
-  return OrderItem;
+    OrderItem.associate = (models) => {
+        OrderItem.belongsTo(models.Order, { foreignKey: 'orderId' });
+        OrderItem.belongsTo(models.Product, { foreignKey: 'productId' });
+    };
+
+    return OrderItem;
 };

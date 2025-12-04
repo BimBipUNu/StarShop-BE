@@ -65,7 +65,7 @@ router.get('/:id', productController.getProductById);
  *     summary: Create a new product
  *     tags: [Products]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     requestBody:
  *       required: true
  *       content:
@@ -104,7 +104,7 @@ router.post(
  *     summary: Update a product by ID
  *     tags: [Products]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -152,7 +152,7 @@ router.put(
  *     summary: Delete a product by ID
  *     tags: [Products]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id

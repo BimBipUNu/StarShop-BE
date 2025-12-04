@@ -20,7 +20,7 @@ const router = express.Router();
  *     summary: Create a new order (User only)
  *     tags: [Orders]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     requestBody:
  *       required: true
  *       content:
@@ -73,7 +73,7 @@ router.post(
  *     summary: Get orders for the current user (User, Staff, Admin)
  *     tags: [Orders]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     responses:
  *       200:
  *         description: A list of orders for the authenticated user
@@ -94,7 +94,7 @@ router.get(
  *     summary: Get all orders (Admin only)
  *     tags: [Orders]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     responses:
  *       200:
  *         description: A list of all orders
@@ -116,7 +116,7 @@ router.get(
  *     summary: Approve an order (Admin and Staff only)
  *     tags: [Orders]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -147,7 +147,7 @@ router.put(
  *     summary: Cancel an order (Admin and Staff only)
  *     tags: [Orders]
  *     security:
- *       - bearerAuth: []
+ *       - xAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
