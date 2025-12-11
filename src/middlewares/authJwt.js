@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['x-access-token'];
+  let token = req.headers['x-access-token'];
 
   if (!token && req.headers.authorization) {
     // Header Authorization thường có dạng: "Bearer eyJhbGci..."
@@ -21,8 +21,9 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(401).send({ message: 'Unauthorized!' });
     }
-    req.userId = decoded.id;
-    req.userRole = decoded.role;
+    req.user = decoded;
+    // req.userId = decoded.id;
+    // req.userRole = decoded.role;
     next();
   });
 };

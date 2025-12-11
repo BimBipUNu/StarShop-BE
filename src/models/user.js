@@ -43,6 +43,7 @@ module.exports = (sequelize) => {
         avatar: {
             type: DataTypes.STRING,
             allowNull: true,
+            defaultValue: "https://res.cloudinary.com/dkzsbvp8p/image/upload/v1765442190/defaultAvatar_lwandr.png"
         },
     }, {
         timestamps: true,
