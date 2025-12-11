@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
         key: 'id',
       },
     },
+    isSelected: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
