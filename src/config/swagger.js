@@ -9,7 +9,7 @@ const options = {
             description: 'API documentation for the StarShop e-commerce application',
         },
         servers: [{
-            url: '/api',
+            url: 'https://starshop-api.onrender.com/api',
             description: 'Development server',
         }, ],
         components: {
