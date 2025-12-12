@@ -22,8 +22,8 @@ const verifyToken = (req, res, next) => {
       return res.status(401).send({ message: 'Unauthorized!' });
     }
     req.user = decoded;
-    // req.userId = decoded.id;
-    // req.userRole = decoded.role;
+    req.userId = decoded.id;
+    req.userRole = decoded.role;
     next();
   });
 };
