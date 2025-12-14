@@ -56,7 +56,7 @@ const getAllOrders = async(req, res, next) => {
 const approveOrder = async(req, res, next) => {
     try {
         const order = await orderService.updateOrderStatus(req.params.id, 'approved');
-        res.status(2200).json({
+        res.status(200).json({
             success: true,
             message: 'Order approved successfully!',
             data: order
